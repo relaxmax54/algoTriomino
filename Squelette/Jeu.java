@@ -1,8 +1,19 @@
 import java.util.Random;
-
+/**
+ * classe jeu modelise des
+ * tirages de triomino
+ */
 public class Jeu{
+    // attributs
     private int largeur;
     private Triomino[] tab=null;
+    /**
+     * constructeur general
+     * @param largeur
+     * largeur du plateau destine a recevoir les triominos
+     * @param base
+     * nombre de valeurs possibles par face avant de la tirer au sort (2 si binaire, 16 si hexa)
+     */
     Jeu(int largeur,int base) {
 	this.largeur=largeur;
 	tab=new Triomino[largeur*largeur];
@@ -11,7 +22,12 @@ public class Jeu{
 	    tab[i]=new Triomino(Math.abs(generator.nextInt()%base), Math.abs(generator.nextInt()%base), Math.abs(generator.nextInt()%base));
 	}
     }
-
+    /**
+     * methode affiche
+     * affiche le tirage sous forme textuelle
+     * affichage des triominos cote a cote sur les 3 memes lignes
+     * retour a la ligne tous les 12 triominos
+     */
     void affiche() {
       for(int i=0; i<largeur*largeur;i+=12){
         int j1,j2,j3;
@@ -27,7 +43,13 @@ public class Jeu{
         System.out.println("");
       }
     }
-
+    /**
+     * methode d acces au triomino d un tirage
+     * @param i
+     * rang du triomino dans le tirage
+     * @return
+     * triomino
+     */
     Triomino get(int i) {
 	return tab[i];
     }

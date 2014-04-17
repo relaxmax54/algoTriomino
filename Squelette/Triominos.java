@@ -1,5 +1,11 @@
 import java.util.Random;
-
+/**
+ * programme principal tire au sort le nombre de faces possibles avant tirage (variable base)
+ * tire au sort la largeur l du plateau qui determine la taille de la liste intiale (l² triomios)
+ * tire au sort la liste intiale de triominos
+ * affiche sous forme de liste les triominos a placer
+ * affiche sous forme de plateau les triominos a deplacer
+ */
 public class Triominos {
     public static void main(String args[]) {
 	System.out.println("Jeu des triominos");
