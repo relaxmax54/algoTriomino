@@ -14,3 +14,7 @@ Rémi :
 * next
 * rotation
 * ajouter
+
+profroegel@gmail.com
+<-- date de dépôt : 12 mai 2014 au matin -->
+
