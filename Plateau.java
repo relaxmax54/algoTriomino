@@ -17,7 +17,13 @@ public class Plateau {
 		for(int i=0;i<largeur;i++)
 		    triominos[i]=new ColonneTriominos(2*i+1);
     }
-        
+   
+    /**
+     * methode d acces a l attribut largeur du plateau
+     * @return
+     * 			largeur
+     */
+    
     public int getLargeur() {
 		return largeur;
 	}
@@ -49,11 +55,21 @@ public class Plateau {
 	return triominos[i].get(j);
     }
 
+    /**
+     * methode enlever
+     * enleve un triomino du plateau
+     * typiquement s il y a un probleme de placement
+     * sur la position suivante ou sur l une des positions encore suivantes
+     * @param p
+     * 			position du triomino a enlever
+     */
+    
     public void enlever(PositionPlateau p) {
     	int i = p.getColonne();
     	int j = p.getRangee();
     	(this.triominos[i]).set(j,null);
     }
+    
     
     public void placer(Triomino t, PositionPlateau p) {
     	

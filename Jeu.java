@@ -29,13 +29,42 @@ public class Jeu{
 		}
     }
     
+    /**
+     * methode ajouter remet un triomino dans la pioche
+     * apres avoir essaye en vain de le placer
+     * @param i
+     * 			rang du triomino dans la pioche de depart	
+     */
     public void ajouter(int i) {
     	utilises[i] = false;
     }
     
+    /**
+     * methode enlever prend un triomino dans la pioche
+     * @param i
+     * 			rang du triomino dans la pioche
+     * @return
+     * 			triomino de rang i dans la pioche de depart
+     */
     public Triomino enlever(int i) {
     	utilises[i] = true;
     	return pieces[i];
+    }
+    
+    /**
+     * methode utilise teste si un triomino est toujours dans la pioche
+     * ou au contraire est place ou en cours de placement
+     * @param i
+     * 			rang du triomino dans la pioche
+     * @return
+     * 			true si le triomino est toujours dans la pioche, false autrement
+     */
+    
+    public boolean utilise(int i) {
+    	if (this.utilises[i])
+    		return true;
+    	else
+    		return false;
     }
     
     /**

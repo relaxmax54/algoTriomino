@@ -67,7 +67,19 @@ public class Triominos {
 	    return '\0';
 	  }
 
-
+/**
+ * methode charorstar affiche la face donnee d un triomino donne
+ * affiche une asterisque si le premier parametre est nul
+ * typiquement si le premier parametre fait partie d une ColonneTriomino
+ * et que null a ete affecte a cet element de la colonne
+ * @param t
+ * 			Triomino a ecrire
+ * @param c
+ * 			face a ecrire
+ * @return
+ * 			valeur monocaractere de la face a ecrire
+ */
+	  
 	static char charorstar(Triomino t,int c) {
 	    if (t!=null)
 	    	return (onechar(c));
@@ -114,35 +126,53 @@ public class Triominos {
 	    }
 	  }
 	}
-
+	
+	
+/**
+ * methode resoudre place sur un plateau p la solution
+ * a un probleme jeu de triomino
+ * en commencant par la case pos du plateau
+ * @param jeu
+ * 				tirage de triomino typiquement instance de Jeu creee aleatoirement par le constructeur de la classe Jeu
+ * @param p
+ * 				plateau a completer typiquement plateau vide pour un premier appel a la fonction
+ * @param pos
+ * 				premiere case du plateau a completer typiquement case (0,0) pour un premier appel a la fonction
+ * @return
+ * 				true si tous les triominos ont pu etre places, false autrement
+ */
 	static boolean resoudre(Jeu jeu, Plateau p, PositionPlateau pos) {
 		int largeur = p.getLargeur();
-		int i = 0;
 		boolean trouve = false;
 		if (pos.dernierePosition(largeur))
 			trouve = true;
 		else {
 			PositionPlateau next_pos = pos.nextPosition(largeur);
+			int i = 0;
 			while ((i<(largeur*largeur))&&(!trouve)) {
-				Triomino t = jeu.enlever(i);
-				int j = 0;
-				while ((j<3)&&(!trouve)) {
-					if (p.contraintes(t,pos)) {
-						p.placer(t,pos);
-						if (resoudre(jeu,p,next_pos))
-							trouve = true;
-						else
-							p.enlever(pos);
+				if (!jeu.utilise(i)) {
+					Triomino t = jeu.enlever(i);
+					int j = 0;
+					while ((j<3)&&(!trouve)) {
+						if (p.contraintes(t,pos)) {
+							p.placer(t,pos);
+							if (resoudre(jeu,p,next_pos))
+								trouve = true;
+							else
+								p.enlever(pos);
+						}
+						if (!trouve) {
+							j++;
+							t = t.rotation();
+						}
 					}
 					if (!trouve) {
-						j++;
-						t = t.rotation();
+						jeu.ajouter(i);
+						i++;
 					}
 				}
-				if (!trouve) {
-					jeu.ajouter(i);
+				else
 					i++;
-				}
 			}
 		}
 		return trouve;
