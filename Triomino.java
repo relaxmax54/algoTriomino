@@ -30,9 +30,9 @@ public class Triomino{
     public Triomino rotation() {
     	int tmp;
     	tmp = c;
-    	c = a;
-    	a = b;
-    	b = tmp;
+    	c = b;
+    	b = a;
+    	a = tmp;
     	Triomino t = new Triomino(a,b,c);
     	return t;
     }
