@@ -20,13 +20,19 @@ public class Triomino{
 		this.b=b;
 		this.c=c;
     }
-    
+   
+/**
+ * methode rotation permute les faces de triomino
+ * dans le sens alphabetique
+ * @return
+ * 			nouveau triomino
+ */
     public Triomino rotation() {
     	int tmp;
-    	tmp = a;
+    	tmp = c;
+    	c = a;
     	a = b;
-    	b = c;
-    	c = tmp;
+    	b = tmp;
     	Triomino t = new Triomino(a,b,c);
     	return t;
     }
