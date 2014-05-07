@@ -92,7 +92,6 @@ public class Triominos {
  * affiche un plateau, meme partiellement rempli.
  */
     public static void affiche_plateau_mini(Plateau p) {
-	p.largeur=2;
 	for (int i = 0 ; i < p.largeur ; i++) {
 	    for (int l=0; l<3; l++) {
 		int k;
@@ -108,23 +107,23 @@ public class Triominos {
 		    case 0:
 			/* top line */
 			if (j%2>0)
-			    System.out.print(" "+charorstar(t,t.a));
+			    System.out.print(" "+charorstar(t,t.b));
 			else
 			    System.out.print("  ^ ");
 			break;
 		    case 1:
 			/* middle line */
 			if (j%2>0)
-			    System.out.print(charorstar(t,t.b)+" "+charorstar(t,t.c));
+			    System.out.print(charorstar(t,t.g)+" "+charorstar(t,t.d));
 			else
-			    System.out.print(charorstar(t,t.c)+" "+charorstar(t,t.b));
+			    System.out.print(charorstar(t,t.d)+" "+charorstar(t,t.g));
 			break;
 		    case 2:
 			/* bottom line */
 			if (j%2>0)
 			    System.out.print(" ");
 			else
-			    System.out.print("/_" + charorstar(t,t.a) + "_\\");
+			    System.out.print("/_" + charorstar(t,t.b) + "_\\");
 		    }
 		}
 		System.out.println("");

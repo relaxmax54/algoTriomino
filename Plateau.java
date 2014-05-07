@@ -57,14 +57,22 @@ public class Plateau{
     /**
      * methode pour placer un Triomino sur le plateau
      */
-    public void placer(Triomino t, PositionPlateau p) {
-    	
+    public void placer(Triomino t, PositionPlateau p){
+	int i = p.getColonne();
+	int j = p.getRangee();
+	(this.triominos[i]).set(j,t);
     }
     /**
      * methode pour verifier le respect des contraintes
      */
     public boolean contraintes(Triomino t, PositionPlateau p) {
-    	
+	//la base du triomino correspond-t'elle à la base du haut ?
+	//la base du triomino correspond-t'elle à la base du bas ?
+	//y'a-t'il un triomino à gauche ?
+	//les valeurs correspondent-elles ?
+	//y'a-t'il un triomino à droite ?
+	//les valeurs correspondent-elles ?
+
     	return true;
     }
     
