@@ -2,54 +2,42 @@
  * classe Plateau modelise un plan triangulaire
  * sur lequel poser les triominos
  */
-public class Plateau {
-    //attributs
+public class Plateau{
+    //largeur du plateau en nombre de colonnes
     int largeur;
+    //tableau de triominos par colonne
     ColonneTriominos[] triominos=null;
     /**
      * constructeur general
-     * @param largeur
-     * largeur du plateau
+     * @param largeur du plateau
      */
-    Plateau(int largeur) {
-		this.largeur=largeur;
-		triominos=new ColonneTriominos[largeur];
-		for(int i=0;i<largeur;i++)
-		    triominos[i]=new ColonneTriominos(2*i+1);
+    Plateau(int largeur){
+	this.largeur=largeur;
+	triominos=new ColonneTriominos[largeur];
+	for(int i=0;i<largeur;i++)
+	    triominos[i]=new ColonneTriominos(2*i+1);
     }
-   
     /**
      * methode d acces a l attribut largeur du plateau
-     * @return
-     * 			largeur
+     * @return largeur
      */
-    
     public int getLargeur() {
-		return largeur;
-	}
-    
-    
-
-	/**
+	return largeur;
+    }
+    /**
      * methode de placement d un triomino
-     * @param i
-     * numero de colonne de l endroit ou placer
-     * @param j
-     * rang dans la colonne de l endroit ou placer
-     * @param t
-     * triomino a placer
+     * @param i numero de colonne de l endroit ou placer
+     * @param j rang dans la colonne de l endroit ou placer
+     * @param t triomino a placer
      */
     void set(int i,int j,Triomino t) {
-    	triominos[i].set(j,t);
+	triominos[i].set(j,t);
     }
     /**
      * methode d acces a un triomino deja place
-     * @param i
-     * numero de la colonne ou se trouve le triomino
-     * @param j
-     * rang du triomino dans sa colonne
-     * @return
-     * triomino 
+     * @param i numero de la colonne ou se trouve le triomino
+     * @param j rang du triomino dans sa colonne
+     * @return triomino
      */
     Triomino get(int i,int j) {
 	return triominos[i].get(j);
@@ -59,22 +47,22 @@ public class Plateau {
      * methode enlever
      * enleve un triomino du plateau
      * typiquement s il y a un probleme de placement
-     * sur la position suivante ou sur l une des positions encore suivantes
-     * @param p
-     * 			position du triomino a enlever
+     * @param p position du triomino a enlever
      */
-    
     public void enlever(PositionPlateau p) {
-    	int i = p.getColonne();
-    	int j = p.getRangee();
-    	(this.triominos[i]).set(j,null);
+	int i = p.getColonne();
+	int j = p.getRangee();
+	(this.triominos[i]).set(j,null);
     }
-    
-    
+    /**
+     * methode pour placer un Triomino sur le plateau
+     */
     public void placer(Triomino t, PositionPlateau p) {
     	
     }
-    
+    /**
+     * methode pour verifier le respect des contraintes
+     */
     public boolean contraintes(Triomino t, PositionPlateau p) {
     	
     	return true;

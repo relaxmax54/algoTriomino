@@ -162,7 +162,7 @@ public class Triominos {
 			if (p.contraintes(t,pos)){
 			    //on place un triomino
 			    p.placer(t,pos);
-			    //si le triomino ne répond ppas aux contraintes
+			    //si le triomino ne répond pas aux contraintes
 			    //on enlève le triomino
 			    if (resoudre(jeu,p,next_pos))
 				trouve = true;
