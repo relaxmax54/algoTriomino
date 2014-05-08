@@ -66,6 +66,7 @@ public class Plateau{
      * methode pour verifier le respect des contraintes
      */
     public boolean contraintes(Triomino t, PositionPlateau p) {
+	//y'a-t-il un triomino à tester sous/sur la base ?
 	//la base du triomino correspond-t'elle à la base du haut ?
 	//la base du triomino correspond-t'elle à la base du bas ?
 	//y'a-t'il un triomino à gauche ?
