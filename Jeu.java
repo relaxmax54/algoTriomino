@@ -91,7 +91,7 @@ public class Jeu{
      * affichage des triominos cote a cote sur les 3 memes lignes
      * retour a la ligne tous les 12 triominos
      */
-    void affiche() {
+    public void affiche() {
       for(int i=0; i<largeur*largeur;i+=12){
         int j1,j2,j3;
         for(j1 = i ; (j1 < largeur*largeur) && (j1 < i+12) ; j1++)
@@ -112,7 +112,7 @@ public class Jeu{
      * @return
      * triomino
      */
-    Triomino get(int i) {
+    public Triomino get(int i) {
     	return pieces[i];
     }
 
