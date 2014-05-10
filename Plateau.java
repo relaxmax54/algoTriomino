@@ -21,28 +21,28 @@ public class Plateau{
 	    for(int c=0;c<r*2+1;c++){
 		//cas généraux
 		if(c%2==0)                 //colonne paires
-		    pos[i]=new PositionPlateau(r,c,6,i);
+		    pos[i]=new PositionPlateau(r,c,13,i);
 		else                       //colonnes impaires
-		    pos[i]=new PositionPlateau(r,c,7,i);
+		    pos[i]=new PositionPlateau(r,c,11,i);
 		//cas particuliers
 		if(r==0)          //première rangée
-		    pos[i].setType(1);
+		    pos[i].setType(4);
 		else if(r==largeur-1){//dernière rangée
 		    if(c%2>0)              //colonnes impaires
-			pos[i].setType(7);
+			pos[i].setType(11);
 		    else                   //colonnes paires
-			pos[i].setType(8);
+			pos[i].setType(9);
 		    if(c==0)
-			pos[i].setType(2);
+			pos[i].setType(1);
 		    if(c==r*2)
-			pos[i].setType(3);
+			pos[i].setType(8);
 		}else{   //toutes les autres rangées
 		    if(c==0)
-			pos[i].setType(4);
-		    if(c==r*2)
 			pos[i].setType(5);
+		    if(c==r*2)
+			pos[i].setType(0b1100);
 		}
-		//System.out.println(i+" "+c+" "+r+" "+pos[i].getType());
+		System.out.println(i+" "+c+" "+r+" "+pos[i].getType());
 		i++;
 	    }
 	}
@@ -142,26 +142,27 @@ public class Plateau{
     public boolean contraintes(Triomino t, PositionPlateau p){
 	boolean test=false;
 	//rappel : la PositionPlateau p ne contient aucun Triomino / triomino=null
-	//test à gauche
-	if(p.getTestGauche())
+	//test à gauche = test du bit 4
+	if((p.getType()&8)==8)
 	    test=(t.getDroite()==pos[p.getIndex()+1].getTriomino().getGauche());
-	//test à droite
-	if(p.getTestDroit())
+	//test à droite = test du bit 1
+	if((p.getType()&1)==1)
 	    test=(t.getDroite()==pos[p.getIndex()+1].getTriomino().getGauche());
-	//test en haut
-	if(p.getTestHaut()){
+	//test en haut = test du bit 2
+	if((p.getType()&2)==2){
 	    int i=p.getIndex()-1;
 	    while(p.getRangee()!=pos[i].getRangee())
 		i--;
+	test=(t.getBase()==pos[i].getTriomino().getBase());
 	}
-	//test en bas
-	if(p.getTestBas()){
+	//test en bas = test du bit 3
+	if((p.getType()&4)==4){
 	    int i=p.getIndex()+1;
 	    while(p.getRangee()!=pos[i].getRangee())
 		i++;
-	}
 	test=(t.getBase()==pos[i].getTriomino().getBase());
-	//on retourne la valeur de test, soit true si tous les tests sont satisfaits
+	}
+	//on retourne la valeur de test, true si tests satisfaits
 	return test;
     }
 }
