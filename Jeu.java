@@ -1,5 +1,6 @@
 import java.util.Random;
 import java.io.*;
+
 /**
  * classe jeu modelise des
  * tirages de triomino
@@ -16,29 +17,27 @@ public class Jeu{
      * @param base
      * nombre de valeurs possibles par face avant de la tirer au sort (2 si binaire, 16 si hexa)
      */
-    Jeu(int largeur,int base) {
-		this.largeur=largeur;
-		pieces=new Triomino[largeur*largeur];
-		utilises=new boolean[largeur*largeur];
-		Random generator = new Random();
-		for (int i=0;i<largeur*largeur;i++) {
-		    pieces[i]=new Triomino(Math.abs(generator.nextInt()%base), Math.abs(generator.nextInt()%base), Math.abs(generator.nextInt()%base));
-		}
-		for (int i=0;i<largeur*largeur;i++) {
-		    utilises[i]=false;
-		}
+    Jeu(int largeur,int base){
+	this.largeur=largeur;
+	pieces=new Triomino[largeur*largeur];
+	utilises=new boolean[largeur*largeur];
+	Random generator = new Random();
+	for (int i=0;i<largeur*largeur;i++) {
+	    pieces[i]=new Triomino(Math.abs(generator.nextInt()%base), Math.abs(generator.nextInt()%base), Math.abs(generator.nextInt()%base));
+	}
+	for (int i=0;i<largeur*largeur;i++) {
+	    utilises[i]=false;
+	}
     }
-    
     /**
      * methode ajouter remet un triomino dans la pioche
      * apres avoir essaye en vain de le placer
      * @param i
-     * 			rang du triomino dans la pioche de depart	
+     * 			rang du triomino dans la pioche de depart
      */
     public void ajouter(int i) {
-    	utilises[i] = false;
+	utilises[i] = false;
     }
-    
     /**
      * methode enlever prend un triomino dans la pioche
      * @param i
@@ -61,10 +60,10 @@ public class Jeu{
      */
     
     public boolean utilise(int i) {
-    	if (this.utilises[i])
-    		return true;
-    	else
-    		return false;
+	if (this.utilises[i])
+	    return true;
+	else
+	    return false;
     }
     
     /**
