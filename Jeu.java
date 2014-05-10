@@ -57,15 +57,13 @@ public class Jeu{
      * 			rang du triomino dans la pioche
      * @return
      * 			true si le triomino est toujours dans la pioche, false autrement
-     */
-    
+     */    
     public boolean utilise(int i) {
 	if (this.utilises[i])
 	    return true;
 	else
 	    return false;
     }
-    
     /**
      * methode ecrit
      * ecrit le tirage de triominos dans un fichier texte
@@ -74,17 +72,16 @@ public class Jeu{
     	String l1 = new String();
     	String l2 = new String();
     	String l3 = new String();
-		for(int i=0; i<largeur*largeur;i++)
-			l1 += "   ^  ";
-		pw.println(l1);
-		for(int i=0; i<largeur*largeur;i++)
-			l2 += "  "+Triominos.onechar(pieces[i].d) + " "+Triominos.onechar(pieces[i].g)+ " ";
-		pw.println(l2);
-		for(int i=0; i<largeur*largeur;i++)
-			l3 += " /_" + Triominos.onechar(pieces[i].b) + "_\\";
-		pw.println(l3);
+	for(int i=0; i<largeur*largeur;i++)
+	    l1 += "   ^  ";
+	pw.println(l1);
+	for(int i=0; i<largeur*largeur;i++)
+	    l2 += "  "+Triominos.onechar(pieces[i].d) + " "+Triominos.onechar(pieces[i].g)+ " ";
+	pw.println(l2);
+	for(int i=0; i<largeur*largeur;i++)
+	    l3 += " /_" + Triominos.onechar(pieces[i].b) + "_\\";
+	pw.println(l3);
     }
-    
     /**
      * methode affiche
      * affiche le tirage sous forme textuelle
@@ -98,7 +95,7 @@ public class Jeu{
           System.out.print("   ^  ");
         System.out.println("");
         for(j2 = i ; (j2 < largeur*largeur) && (j2 < i+12) ; j2++)
-          System.out.print("  "+Triominos.onechar(pieces[j2].d) + " "+Triominos.onechar(pieces[j2].g)+ " ");
+          System.out.print("  "+Triominos.onechar(pieces[j2].g) + " "+Triominos.onechar(pieces[j2].d)+ " ");
         System.out.println("");
         for(j3 = i ; (j3 < largeur*largeur) && (j3 < i+12) ; j3++)
           System.out.print(" /_" + Triominos.onechar(pieces[j3].b) + "_\\");

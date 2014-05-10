@@ -97,11 +97,19 @@ public class Plateau{
     }
     /**
      * methode d acces a un triomino deja place
-     * @param index de la position du triomino
+     * @param int r rang du triomino
+     * @param int c colonne du Triomino
      * @return triomino
      */
-    public Triomino get(int index){
-	return pos[index].getTriomino();
+    public Triomino get(int r,int c){
+	int i=0;
+	int j=0;
+	while(pos[i].getRangee()!=r){
+	    while(pos[j].getColonne()!=c)
+		j++;
+	    i++;
+	}
+	return pos[i].getTriomino();
     }
     /**
      * methode pour placer un Triomino sur le plateau
@@ -117,15 +125,14 @@ public class Plateau{
      */
     public void enlever(PositionPlateau p) {
 	p.setTriomino(null);
-    }
-    
+    }    
     /**
      * dernierePosition verifie si la position
      * est la derniere du plateau
      * @return true si la position est la derniere, false autrement
      */
     public boolean dernierePosition(PositionPlateau p) {
-	//l'attribut type=3 de PositionPlateau détermine la dernière position du plateau
+	//l'attribut type=8 de PositionPlateau détermine la dernière position du plateau
 	if(p.getType()==8)
 	    return true;
 	else

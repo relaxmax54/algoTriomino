@@ -13,7 +13,7 @@ public class Triominos {
 	System.out.println("Jeu des triominos");
 	/*	        Random generator = new Random();*/
 	int base,size;
-	base = 3;
+	base = 6;
 	size = 3;
 	/*	        base =  2 + Math.abs(generator.nextInt()%15);
 			size =  1 + Math.abs(generator.nextInt()%6);*/
@@ -30,23 +30,13 @@ public class Triominos {
 		}
 	}
 	Plateau p=new Plateau(size);
-	jeu.affiche();
-	
+	jeu.affiche();	
 	/*  placer les triominos sur le plateau.
 	 *    on ne résout pas le problème ici
 	 */
 	for(int i=0;i<size*size;i++)
 	    p.set(jeu.get(i),i);
-
-	/*
-	int k = 0;
-	for ( int i = 0; i < size; i++ ) {
-	    for ( int j = 0; j < 2*i+1; j++ ) {
-		p.set(i,j,jeu.get(k));
-		k++;
-	    }
-	}
-	*/
+	//
 	affiche_plateau_mini(p);
 	tests();
 	PositionPlateau pos= new PositionPlateau(0,0,4,0);
@@ -84,29 +74,24 @@ public class Triominos {
      * @return
      * 			valeur monocaractere de la face a ecrire
      */
-    
     public static char charorstar(Triomino t,int c) {
 	if (t!=null)
 	    return (onechar(c));
 	else return('*');
     }
-    
     /*
      * affiche un plateau, meme partiellement rempli.
      */
     public static void affiche_plateau_mini(Plateau p) {
-	int index=0;
 	for (int i = 0 ; i < p.largeur ; i++) {
 	    for (int l=0; l<3; l++) {
 		//AFFICHE LES ESPACES ENTRE BORD GAUCHE ET PREMIER TRIOMINO
 		for(int k=0 ; k<p.largeur-i;k++)
 		    System.out.print("   ");
-		
 		if (l%2>0)
 		    System.out.print(" ");
-		
 		for (int j=0 ; j <= 2*i ; j++ ){
-		    Triomino t=p.get(index);
+		    Triomino t=p.get(i,j);
 		    switch (l) {
 		    case 0:
 			/* top line */
@@ -131,7 +116,6 @@ public class Triominos {
 		    }
 		}
 		System.out.println("");
-		index++;
 	    }
 	}
     }
@@ -148,9 +132,10 @@ public class Triominos {
 	int largeur = p.getLargeur();
 	boolean trouve = false;
 	//cas de sortie
-	if(p.dernierePosition(pos))
+	if(p.dernierePosition(pos)){
+	    System.out.println("sortie : "+pos.getIndex());
 	    trouve = true;
-	else{
+	}else{
 	    PositionPlateau next_pos = p.nextPosition(pos);
 	    int i = 0;
 	    //on s'assure que l'on ne dépasse pas le nombre de colonnes(largeur)
@@ -161,7 +146,7 @@ public class Triominos {
 		    Triomino t = jeu.enlever(i);
 		    int j = 0;//nombre de fois  que le triomino sera retourné
 		    //2 retournements maximum
-		    while ((j<3)&&(!trouve)){
+		    while ((j<2)&&(!trouve)){
 			//si les contraintes sont vérifiées
 			System.out.println("index : "+pos.getIndex());
 			if (p.contraintes(t,pos)){
@@ -200,7 +185,5 @@ public class Triominos {
     }
     public static void tests(){
 	System.out.println("tests en cours !");
-
     }
-
 }

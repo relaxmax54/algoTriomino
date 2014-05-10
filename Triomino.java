@@ -6,6 +6,7 @@
 public class Triomino{
 // attributs
     int b,g,d;
+    int r,c;
     /**
      * getter de l'attribut b
      */
@@ -48,6 +49,10 @@ public class Triomino{
 	g = tmp;
 	Triomino t = new Triomino(b,g,d);
 	return t;
+    }
+    public void setPlace(int r, int c){
+	this.r=r;
+	this.c=c;
     }
 }
 
