@@ -139,19 +139,30 @@ public class Plateau{
     /**
      * methode pour verifier le respect des contraintes
      */
-    public boolean contraintes(Triomino t, PositionPlateau p) {
-	int c = p.getColonne();
-	int r = p.getRangee();
-	//y'a-t-il un triomino à tester sous/sur la base ?
-	//	System.out.println("Colonne : "+c+" Rangée : "+r);
-	//la base du triomino correspond-t'elle à la base du haut ?
-	//la base du triomino correspond-t'elle à la base du bas ?
-	//y'a-t'il un triomino à gauche ?
-	//les valeurs correspondent-elles ?
-	//y'a-t'il un triomino à droite ?
-	//les valeurs correspondent-elles ?
-
-    	return true;
-    }   
+    public boolean contraintes(Triomino t, PositionPlateau p){
+	boolean test=false;
+	//rappel : la PositionPlateau p ne contient aucun Triomino / triomino=null
+	//test à gauche
+	if(p.getTestGauche())
+	    test=(t.getDroite()==pos[p.getIndex()+1].getTriomino().getGauche());
+	//test à droite
+	if(p.getTestDroit())
+	    test=(t.getDroite()==pos[p.getIndex()+1].getTriomino().getGauche());
+	//test en haut
+	if(p.getTestHaut()){
+	    int i=p.getIndex()-1;
+	    while(p.getRangee()!=pos[i].getRangee())
+		i--;
+	}
+	//test en bas
+	if(p.getTestBas()){
+	    int i=p.getIndex()+1;
+	    while(p.getRangee()!=pos[i].getRangee())
+		i++;
+	}
+	test=(t.getBase()==pos[i].getTriomino().getBase());
+	//on retourne la valeur de test, soit true si tous les tests sont satisfaits
+	return test;
+    }
 }
 

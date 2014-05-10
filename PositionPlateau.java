@@ -47,40 +47,42 @@ public class PositionPlateau {
     }
     /**
      * getter pour accéder au Triomino de la position
+     *@return Triomino triomino
      */
     public Triomino getTriomino(){
 	return this.triomino;
     }
     /**
      * getter pour accéder i l'index de la position
+     *@return int index
      */
     public int getIndex(){
 	return this.index;
     }
     /**
      * setter pour accéder au Triomino de la position
+     *@param : Triomino t triomino de la position
      */
     public void setTriomino(Triomino t){
 	this.triomino=t;
     }
-
-    //
-    public int getType(){//A ENLEVER !!!!
+    /**
+     * getter pour accéder au type de la position
+     *@return int type
+     */
+    public int getType(){
 	return this.type;
     }
     /**
      * methode d acces a une coordonnee(colonne) du plateau
-     * @return
-     * 			colonne de la case
+     * @return int colonne de la case
      */
     public int getColonne() {
 	return colonne;
     }
-    
     /**
      * methode d acces a une coordonnee(rangee) du plateau
-     * @return
-     * 			rangee de la case
+     * @return int rangee de la case
      */
     public int getRangee() {
 	return rangee;
