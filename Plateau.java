@@ -50,37 +50,6 @@ public class Plateau{
 	}
     }
     /**
-     * définit le type de position dans le plateau
-     *@param int c colonne
-     *@param int r rang
-     */
-    public int defType(int c,int r){
-	int type;
-	if(c%2==0)                 //colonne paires
-	    type=6;
-	else                       //colonnes impaires
-	    type=7;
-	//cas particuliers
-	if(r==0)          //première rangée
-	    type=1;
-	else if(r==largeur-1){//dernière rangée
-	    if(c%2>0)              //colonnes impaires
-		type=7;
-	    else                   //colonnes paires
-		type=8;
-	    if(c==0)
-		type=2;
-	    if(c==r*2)
-		type=3;
-	}else{   //toutes les autres rangées
-	    if(c==0)
-		type=4;
-	    if(c==r*2)
-		type=5;
-	}
-	return type;
-    }
-    /**
      * methode d acces a l attribut largeur du plateau
      * @return largeur
      */
@@ -102,14 +71,12 @@ public class Plateau{
      * @return triomino
      */
     public Triomino get(int r,int c){
-	int i=0;
-	int j=0;
-	while(pos[i].getRangee()!=r){
-	    while(pos[j].getColonne()!=c)
-		j++;
-	    i++;
+	int rep=0;
+	for(int i=0;i<largeur*largeur;i++){
+	    if(pos[i].getRangee()==r && pos[i].getColonne()==c)
+		rep=i;
 	}
-	return pos[i].getTriomino();
+	return pos[rep].getTriomino();
     }
     /**
      * methode pour placer un Triomino sur le plateau
@@ -153,10 +120,10 @@ public class Plateau{
 	//rappel : la PositionPlateau p ne contient aucun Triomino / triomino=null
 	//test à gauche = test du bit 4
 	if((p.getType()&8)==8)
-	    if(pos[p.getIndex()+1].getTriomino()==null)
+	    if(pos[p.getIndex()-1].getTriomino()==null)
 		test=true;
 	    else
-		test=(t.getDroite()==pos[p.getIndex()+1].getTriomino().getGauche());
+		test=(t.getGauche()==pos[p.getIndex()-1].getTriomino().getDroite());//on compare la valeur de gauche avec celle de la droite du voisin
 	//test à droite = test du bit 1
 	if((p.getType()&1)==1)
 	    if(pos[p.getIndex()+1].getTriomino()==null)//test si un triomino est à côté
@@ -167,15 +134,14 @@ public class Plateau{
 	if((p.getType()&2)==2){
 	    int i=p.getIndex()-1;
 	    while(p.getRangee()!=pos[i].getRangee())
-		i--;
+		i--;//on recule jusqu'à retrouver la même rangée au dessus
 	test=(t.getBase()==pos[i].getTriomino().getBase());
 	}
 	//test en bas = test du bit 3
 	if((p.getType()&4)==4){
-
 	    int i=p.getIndex()+1;
 	    while(p.getRangee()!=pos[i].getRangee())
-		i++;
+		i++;//on avance jusqu'à retrouver la même rangée en dessous
 	    if(pos[i].getTriomino()==null)//test si un triomino en dessous
 		test=true;
 	    else

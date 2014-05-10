@@ -13,7 +13,7 @@ public class Triominos {
 	System.out.println("Jeu des triominos");
 	/*	        Random generator = new Random();*/
 	int base,size;
-	base = 6;
+	base = 2;
 	size = 3;
 	/*	        base =  2 + Math.abs(generator.nextInt()%15);
 			size =  1 + Math.abs(generator.nextInt()%6);*/
