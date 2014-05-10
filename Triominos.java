@@ -35,7 +35,10 @@ public class Triominos {
 	/*  placer les triominos sur le plateau.
 	 *    on ne résout pas le problème ici
 	 */
-	
+	for(int i=0;i<size*size;i++)
+	    p.set(jeu.get(i),i);
+
+	/*
 	int k = 0;
 	for ( int i = 0; i < size; i++ ) {
 	    for ( int j = 0; j < 2*i+1; j++ ) {
@@ -43,6 +46,7 @@ public class Triominos {
 		k++;
 	    }
 	}
+	*/
 	affiche_plateau_mini(p);
 	tests();
 	//PositionPlateau pos= pos[1];/*]new PositionPlateau(0,0,1);*/
@@ -90,18 +94,18 @@ public class Triominos {
      * affiche un plateau, meme partiellement rempli.
      */
     public static void affiche_plateau_mini(Plateau p) {
+	int index=0;
 	for (int i = 0 ; i < p.largeur ; i++) {
 	    for (int l=0; l<3; l++) {
-		int k;
 		//AFFICHE LES ESPACES ENTRE BORD GAUCHE ET PREMIER TRIOMINO
-		for(k=0 ; k<p.largeur-i;k++)
+		for(int k=0 ; k<p.largeur-i;k++)
 		    System.out.print("   ");
 		
 		if (l%2>0)
 		    System.out.print(" ");
 		
 		for (int j=0 ; j <= 2*i ; j++ ){
-		    Triomino t=p.get(i,j);
+		    Triomino t=p.get(index);
 		    switch (l) {
 		    case 0:
 			/* top line */
@@ -126,6 +130,7 @@ public class Triominos {
 		    }
 		}
 		System.out.println("");
+		index++;
 	    }
 	}
     }
@@ -142,10 +147,10 @@ public class Triominos {
 	int largeur = p.getLargeur();
 	boolean trouve = false;
 	//cas de sortie
-	if(pos.dernierePosition(largeur))
+	if(p.dernierePosition(pos))
 	    trouve = true;
 	else{
-	    PositionPlateau next_pos = pos.nextPosition(largeur);
+	    PositionPlateau next_pos = p.nextPosition(pos);
 	    int i = 0;
 	    //on s'assure que l'on ne dépasse pas le nombre de colonnes(largeur)
 	    while ((i<(largeur*largeur))&&(!trouve)) {

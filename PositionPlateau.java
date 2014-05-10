@@ -5,11 +5,13 @@
  */
 public class PositionPlateau {
     // triomino placé à cette position
-    private triomino t;
+    private Triomino triomino;
     // colonne correspondante à cette position
     private int colonne;
     // rangée correspondante à cette position
     private int rangee;
+    // index correspondant à l'ordre de la position sur un plateau
+    private int index;
     /**
      * type permet de modéliser les types de positions sur un plateau :
      * 1 - 1 valeur à tester dans le rang au dessous de la base
@@ -24,16 +26,16 @@ public class PositionPlateau {
     private int type;
     /**
      * constructeur general
-     * @param c
-     * 			colonne de la case a construire
-     * @param r
-     * 			rangee de la case a construire
+     * @param int c colonne de la case a construire
+     * @param int r rangee de la case a construire
+     * @param int i index de la position sur un plateau
      */
-    public PositionPlateau(int c, int r, int t) {
-	this.t=null;//au départ aucun triomino n'est attribué à une position;
-	this.colonne = c;
-	this.rangee = r;
+    public PositionPlateau(int c, int r, int t, int i) {
+	this.triomino=null;//au départ aucun triomino n'est attribué à une position;
+	this.colonne=c;
+	this.rangee=r;
 	this.type=t;
+	this.index=i;
     }
     /**
      * setter pour modifier le type de position
@@ -43,6 +45,26 @@ public class PositionPlateau {
     public void setType(int t){
 	this.type=t;
     }
+    /**
+     * getter pour accéder au Triomino de la position
+     */
+    public Triomino getTriomino(){
+	return this.triomino;
+    }
+    /**
+     * getter pour accéder i l'index de la position
+     */
+    public int getIndex(){
+	return this.index;
+    }
+    /**
+     * setter pour accéder au Triomino de la position
+     */
+    public void setTriomino(Triomino t){
+	this.triomino=t;
+    }
+
+    //
     public int getType(){//A ENLEVER !!!!
 	return this.type;
     }
