@@ -24,30 +24,32 @@ public class Plateau{
 	pos=new PositionPlateau[largeur*largeur];
 	int i=0;
 	for(int r=0;r<largeur;r++){
-	    for(int c=0;r<r*2+1,r++){
+	    for(int c=0;c<r*2+1;c++){
 		//cas généraux
 		if(c%2==0)                 //colonne paires
 		    pos[i]=new PositionPlateau(r,c,6);
 		else                       //colonnes impaires
 		    pos[i]=new PositionPlateau(r,c,7);
 		//cas particuliers
-		if(r=0)          //première rangée
+		if(r==0)          //première rangée
 		    pos[i].setType(1);
-		else if(r=r*2+1){//dernière rangée
-		    if(c=0)
-			pos[i].setType(2);
-		    if(c=r*2+1)
-			pos[i].setType(3);
+		else if(r==largeur-1){//dernière rangée
 		    if(c%2>0)              //colonnes impaires
-			pos[i].setType(8);
-		    else                   //colonnes paires
 			pos[i].setType(7);
-			}else{   //toutes les autres rangées
-		    if(c=0)
+		    else                   //colonnes paires
+			pos[i].setType(8);
+		    if(c==0)
+			pos[i].setType(2);
+		    if(c==r*2)
+			pos[i].setType(3);
+		}else{   //toutes les autres rangées
+		    if(c==0)
 			pos[i].setType(4);
-		    if(c=r*2+1)
+		    if(c==r*2)
 			pos[i].setType(5);
 		}
+		//System.out.println(i+" "+c+" "+r+" "+pos[i].getType());
+		i++;
 	    }
 	}
     }

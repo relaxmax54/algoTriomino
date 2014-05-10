@@ -45,8 +45,8 @@ public class Triominos {
 	}
 	affiche_plateau_mini(p);
 	tests();
-	PositionPlateau pos= new PositionPlateau(0,0);
-	resoudre(jeu,p,pos);
+	//PositionPlateau pos= pos[1];/*]new PositionPlateau(0,0,1);*/
+	//resoudre(jeu,p,pos);
 	affiche_plateau_mini(p);
     }
     /**

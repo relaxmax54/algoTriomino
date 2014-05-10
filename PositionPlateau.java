@@ -14,8 +14,8 @@ public class PositionPlateau {
      * 3 - 1 valeur à tester dans la colonne de gauche
      * 4 - 2 valeurs à tester dans le rang au-dessous la base et la colonne de droite
      * 5 - 2 valeurs à tester dans le rang au-dessous la base et la colonne de gauche
-     * 6 - 3 valeurs à tester dont une dans le rang au-dessus de la base
-     * 7 - 3 valeurs à tester dont une dans le rang au-dessous de la base
+     * 6 - 3 valeurs à tester dont une dans le rang au-dessous de la base
+     * 7 - 3 valeurs à tester dont une dans le rang au-dessus de la base
      * 8 - 2 valeurs à tester à gauche et à droite dans le rang
      */
     private int type;
@@ -36,8 +36,11 @@ public class PositionPlateau {
      *@param : int type : type de position
      *
      */
-    public setType(int t){
+    public void setType(int t){
 	this.type=t;
+    }
+    public int getType(){
+	return this.type;
     }
     /**
      * methode d acces a une coordonnee(colonne) du plateau
@@ -87,7 +90,8 @@ public class PositionPlateau {
      * 			position suivante
      */
     public PositionPlateau nextPosition(int largeur) {
-	int c,r;
+	int c,r,t;
+	t=0;
 	if ((rangee == 0)&&(colonne == 0)) {
 	    c = 0;
 	    r = 0;
@@ -102,7 +106,7 @@ public class PositionPlateau {
 		r = rangee+1;
 	    }
 	}
-	PositionPlateau p = new PositionPlateau(c,r);
+	PositionPlateau p = new PositionPlateau(c,r,t);
 	return p;
     }
 }
