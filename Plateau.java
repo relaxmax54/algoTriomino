@@ -103,8 +103,8 @@ public class Plateau{
      * methode nextPosition retourne la position suivante sur le plateau
      * @return p positionPlateau suivante
      */
-    public PositionPlateau nextPosition(i) {
-	return pos[i+1];
+    public PositionPlateau nextPosition(int index) {
+	return pos[index+1];
     }
 
     /**
