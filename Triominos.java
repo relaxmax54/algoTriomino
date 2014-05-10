@@ -37,6 +37,11 @@ public class Triominos {
 	for(int i=0;i<size*size;i++)
 	    p.set(jeu.get(i),i);
 	//
+	for(int i=0;i<size*size;i++){
+	    System.out.print(p.pos[i].getTriomino().b);
+	    System.out.print(p.pos[i].getTriomino().d);
+	    System.out.print(p.pos[i].getTriomino().g+"/");
+	}
 	affiche_plateau_mini(p);
 	tests();
 	PositionPlateau pos= new PositionPlateau(0,0,4,0);
@@ -117,6 +122,12 @@ public class Triominos {
 		}
 		System.out.println("");
 	    }
+	}
+    
+	for(int i=0;i<9;i++){
+	    System.out.print(p.pos[i].getTriomino().b);
+	    System.out.print(p.pos[i].getTriomino().d);
+	    System.out.print(p.pos[i].getTriomino().g+"/");
 	}
     }
     /**

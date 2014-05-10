@@ -41,9 +41,10 @@ public class Plateau{
 		    if(c==0)
 			pos[i].setType(5);
 		    if(c==r*2)
-			pos[i].setType(0b1100);
+			pos[i].setType(12);
 		}
-		System.out.println(i+" "+(c+milieu)+" "+r+" "+pos[i].getType());
+		System.out.println("index:"+i+" c: "+(c+milieu)+" r: "+r+" "+pos[i].getType());
+		System.out.println("index:"+i+" c: "+pos[i].getColonne()+" r: "+r+" "+pos[i].getType());
 		i++;
 	    }
 	    milieu--;
@@ -133,15 +134,18 @@ public class Plateau{
 	//test en haut = test du bit 2
 	if((p.getType()&2)==2){
 	    int i=p.getIndex()-1;
-	    while(p.getRangee()!=pos[i].getRangee())
+	    while(p.getColonne()!=pos[i].getColonne())
 		i--;//on recule jusqu'à retrouver la même rangée au dessus
 	test=(t.getBase()==pos[i].getTriomino().getBase());
 	}
 	//test en bas = test du bit 3
 	if((p.getType()&4)==4){
+	    System.out.println("testbit4");
 	    int i=p.getIndex()+1;
-	    while(p.getRangee()!=pos[i].getRangee())
+	    while(p.getColonne()!=pos[i].getColonne()){
+		System.out.print(p.getColonne()+":"+pos[i].getColonne()+"/");
 		i++;//on avance jusqu'à retrouver la même rangée en dessous
+	    }
 	    if(pos[i].getTriomino()==null)//test si un triomino en dessous
 		test=true;
 	    else
