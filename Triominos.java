@@ -49,7 +49,7 @@ public class Triominos {
 	*/
 	affiche_plateau_mini(p);
 	tests();
-	PositionPlateau pos= pos[1];/*]new PositionPlateau(0,0,1);*/
+	PositionPlateau pos= new PositionPlateau(0,0,4,0);
 	resoudre(jeu,p,pos);
 	System.out.println("Résultat :" );
 	affiche_plateau_mini(p);
@@ -163,6 +163,7 @@ public class Triominos {
 		    //2 retournements maximum
 		    while ((j<3)&&(!trouve)){
 			//si les contraintes sont vérifiées
+			System.out.println(pos.getIndex());
 			if (p.contraintes(t,pos)){
 			    //on place un triomino
 			    p.placer(t,pos);
