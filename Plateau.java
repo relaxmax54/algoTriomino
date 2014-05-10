@@ -14,7 +14,7 @@ public class Plateau{
     Plateau(int largeur){
 	//le Plateau reprend la largeur du jeu
 	this.largeur=largeur;
-	//on crée autanttoutes les positions possibles dans le plateau
+	//on crée toutes les positions possibles dans le plateau
 	pos=new PositionPlateau[largeur*largeur];
 	int i=0;
 	int milieu=largeur-1;
@@ -22,9 +22,9 @@ public class Plateau{
 	    for(int c=0;c<r*2+1;c++){
 		//cas généraux
 		if(c%2==0)                 //colonne paires
-		    pos[i]=new PositionPlateau(r,c+milieu,13,i);
+		    pos[i]=new PositionPlateau(c+milieu,r,13,i);
 		else                       //colonnes impaires
-		    pos[i]=new PositionPlateau(r,c+milieu,11,i);
+		    pos[i]=new PositionPlateau(c+milieu,r,11,i);
 		//cas particuliers
 		if(r==0)          //première rangée
 		    pos[i].setType(4);
