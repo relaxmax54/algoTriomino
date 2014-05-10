@@ -126,7 +126,7 @@ public class Plateau{
      */
     public boolean dernierePosition(PositionPlateau p) {
 	//l'attribut type=3 de PositionPlateau détermine la dernière position du plateau
-	if(p.getType()==3)
+	if(p.getType()==8)
 	    return true;
 	else
 	    return false;

@@ -163,7 +163,7 @@ public class Triominos {
 		    //2 retournements maximum
 		    while ((j<3)&&(!trouve)){
 			//si les contraintes sont vérifiées
-			System.out.println(pos.getIndex());
+			System.out.println("index : "+pos.getIndex());
 			if (p.contraintes(t,pos)){
 			    //on place un triomino
 			    p.placer(t,pos);
@@ -171,14 +171,17 @@ public class Triominos {
 			    //on enlève le triomino
 			    if (resoudre(jeu,p,next_pos))
 				trouve = true;
-			    else
+			    else{
 				p.enlever(pos);
+				System.out.println("on enlève");
+			    }
 			}
 			//si le triomino n'a pas satisfait aux contraintes
 			//on le tourne 2 fois maximum (j<3)
 			if (!trouve){
 			    j++;
 			    t = t.rotation();
+			    System.out.println("on retourne "+j);
 			}
 		    }
 		    //si test non satisfait après 2 retournements...
