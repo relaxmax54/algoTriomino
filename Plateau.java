@@ -5,8 +5,7 @@
 public class Plateau{
     //largeur du plateau en nombre de colonnes
     int largeur;
-    //tableau de triominos par colonne
-    ColonneTriominos[] triominos=null;
+    //tableau  représentant toutes les positions possibles sur le plateau
     PositionPlateau[] pos;
     /**
      * constructeur general
@@ -15,12 +14,7 @@ public class Plateau{
     Plateau(int largeur){
 	//le Plateau reprend la largeur du jeu
 	this.largeur=largeur;
-	//on crée autant de colonnes que l'unité de largeur
-	triominos=new ColonneTriominos[largeur];
-	//on crée des colonnes dont la hauteur varie en fonction de leur position dans le jeu
-	for(int i=0;i<largeur;i++)
-	    triominos[i]=new ColonneTriominos(2*i+1);
-	//on crée autant de positions qu'il existe de triominos dans le plateau
+	//on crée autanttoutes les positions possibles dans le plateau
 	pos=new PositionPlateau[largeur*largeur];
 	int i=0;
 	for(int r=0;r<largeur;r++){
@@ -92,6 +86,27 @@ public class Plateau{
 	(this.triominos[c]).set(r,null);
 
     }
+    
+    /**
+     * dernierePosition verifie si la position
+     * est la derniere du plateau
+     * @return true si la position est la derniere, false autrement
+     */
+    public boolean dernierePosition() {
+	//l'attribut type=3 de PositionPlateau détermine la dernière position du plateau
+	if(this.type=3)
+	    return true;
+	else
+	    return false;
+    }
+    /**
+     * methode nextPosition retourne la position suivante sur le plateau
+     * @return p positionPlateau suivante
+     */
+    public PositionPlateau nextPosition(i) {
+	return pos[i+1];
+    }
+
     /**
      * methode pour placer un Triomino sur le plateau
      */
