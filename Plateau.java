@@ -144,10 +144,16 @@ public class Plateau{
 	//rappel : la PositionPlateau p ne contient aucun Triomino / triomino=null
 	//test à gauche = test du bit 4
 	if((p.getType()&8)==8)
-	    test=(t.getDroite()==pos[p.getIndex()+1].getTriomino().getGauche());
+	    if(pos[p.getIndex()+1].getTriomino()==null)
+		test=true;
+	    else
+		test=(t.getDroite()==pos[p.getIndex()+1].getTriomino().getGauche());
 	//test à droite = test du bit 1
 	if((p.getType()&1)==1)
-	    test=(t.getDroite()==pos[p.getIndex()+1].getTriomino().getGauche());
+	    if(pos[p.getIndex()+1].getTriomino()==null)//test si un triomino est à côté
+		test=true;
+	    else
+		test=(t.getDroite()==pos[p.getIndex()+1].getTriomino().getGauche());
 	//test en haut = test du bit 2
 	if((p.getType()&2)==2){
 	    int i=p.getIndex()-1;
@@ -157,10 +163,14 @@ public class Plateau{
 	}
 	//test en bas = test du bit 3
 	if((p.getType()&4)==4){
+
 	    int i=p.getIndex()+1;
 	    while(p.getRangee()!=pos[i].getRangee())
 		i++;
-	test=(t.getBase()==pos[i].getTriomino().getBase());
+	    if(pos[i].getTriomino()==null)//test si un triomino en dessous
+		test=true;
+	    else
+		test=(t.getBase()==pos[i].getTriomino().getBase());
 	}
 	//on retourne la valeur de test, true si tests satisfaits
 	return test;
