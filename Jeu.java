@@ -76,10 +76,10 @@ public class Jeu{
 	    l1 += "   ^  ";
 	pw.println(l1);
 	for(int i=0; i<largeur*largeur;i++)
-	    l2 += "  "+Triominos.onechar(pieces[i].d) + " "+Triominos.onechar(pieces[i].g)+ " ";
+	    l2 += "  "+Triominos.onechar(pieces[i].getDroite()) + " "+Triominos.onechar(pieces[i].getGauche())+ " ";
 	pw.println(l2);
 	for(int i=0; i<largeur*largeur;i++)
-	    l3 += " /_" + Triominos.onechar(pieces[i].b) + "_\\";
+	    l3 += " /_" + Triominos.onechar(pieces[i].getBase()) + "_\\";
 	pw.println(l3);
     }
     /**
@@ -95,10 +95,10 @@ public class Jeu{
           System.out.print("   ^  ");
         System.out.println("");
         for(j2 = i ; (j2 < largeur*largeur) && (j2 < i+12) ; j2++)
-          System.out.print("  "+Triominos.onechar(pieces[j2].g) + " "+Triominos.onechar(pieces[j2].d)+ " ");
+	    System.out.print("  "+Triominos.onechar(pieces[j2].getGauche()) + " "+Triominos.onechar(pieces[j2].getDroite())+ " ");
         System.out.println("");
         for(j3 = i ; (j3 < largeur*largeur) && (j3 < i+12) ; j3++)
-          System.out.print(" /_" + Triominos.onechar(pieces[j3].b) + "_\\");
+          System.out.print(" /_" + Triominos.onechar(pieces[j3].getBase()) + "_\\");
         System.out.println("");
       }
     }

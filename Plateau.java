@@ -75,7 +75,7 @@ public class Plateau{
     public Triomino get(int r,int c){
 	int rep=0;
 	for(int i=0;i<largeur*largeur;i++){
-	    if(pos[i].getTriomino().r==r && pos[i].getTriomino().c==c)
+	    if(pos[i].getTriomino().getRangee()==r && pos[i].getTriomino().getColonne()==c)
 		rep=i;
 	}
 	return pos[rep].getTriomino();

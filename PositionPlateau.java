@@ -30,7 +30,7 @@ public class PositionPlateau {
      * @param int c colonne de la case a construire
      * @param int r rangee de la case a construire
      * @param int i index de la position sur un plateau
-     * @param char t type de position 
+     * @param int t type de position 
      */
     public PositionPlateau(int r, int c, int t, int i) {
 	this.triomino=null;//au départ aucun triomino n'est attribué;

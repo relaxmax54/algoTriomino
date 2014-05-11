@@ -4,26 +4,47 @@
 * sur chacune de ses trois faces
 */
 public class Triomino{
-// attributs
-    int b,g,d;
-    int r,c;
+    /**
+     * int base valeur à la base du Triomino
+     * int gauche valeur à gauche
+     * int droite valeur à droite
+     * int rangee rangee du Triomino
+     * int colonne colonne du Triomino
+     */
+    private int base;
+    private int gauche;
+    private int droite;
+    private int rangee;
+    private int colonne;
     /**
      * getter de l'attribut b
      */
     public int getBase(){
-	return this.b;
+	return this.base;
     }
     /**
      * getter de l'attribut d
      */
     public int getDroite(){
-	return this.d;
+	return this.droite;
     }
     /**
      * getter de l'attribut g
      */
     public int getGauche(){
-	return this.g;
+	return this.gauche;
+    }
+    /**
+     * getter de l'attribut r
+     */
+    public int getRangee(){
+	return this.rangee;
+    }
+    /**
+     * getter de l'attribut c
+     */
+    public int getColonne(){
+	return this.colonne;
     }
     /**
      * constructeur general
@@ -32,9 +53,9 @@ public class Triomino{
      * @param d valeur du cote droit du triomino
      */
     public Triomino(int b,int g,int d) {
-	this.b=b;
-	this.g=g;
-	this.d=d;
+	this.base=b;
+	this.gauche=g;
+	this.droite=d;
     }
     /**
      * methode rotation permute les faces de triomino
@@ -43,14 +64,14 @@ public class Triomino{
      */
     public void rotation() {
 	int tmp;
-	tmp = b;
-	b = d;
-	d = g;
-	g = tmp;
+	tmp = this.base;
+	this.base = this.droite;
+	this.droite = this.gauche;
+	this.gauche = tmp;
     }
     public void setPlace(int r, int c){
-	this.r=r;
-	this.c=c;
+	this.rangee=r;
+	this.colonne=c;
     }
 }
 

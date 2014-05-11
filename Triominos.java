@@ -105,23 +105,23 @@ public class Triominos {
 		    case 0:
 			/* top line */
 			if (j%2>0)//j pair
-			    System.out.print(" "+charorstar(t,t.b));
+			    System.out.print(" "+charorstar(t,t.getBase()));
 			else
 			    System.out.print("  ^ ");
 			break;
 		    case 1:
 			/* middle line */
 			if (j%2>0)//j pair
-			    System.out.print(charorstar(t,t.d)+" "+charorstar(t,t.g));
+			    System.out.print(charorstar(t,t.getDroite())+" "+charorstar(t,t.getGauche()));
 			else
-			    System.out.print(charorstar(t,t.g)+" "+charorstar(t,t.d));
+			    System.out.print(charorstar(t,t.getGauche())+" "+charorstar(t,t.getDroite()));
 			break;
 		    case 2:
 			/* bottom line */
 			if (j%2>0)
 			    System.out.print(" ");
 			else
-			    System.out.print("/_" + charorstar(t,t.b) + "_\\");
+			    System.out.print("/_" + charorstar(t,t.getBase()) + "_\\");
 		    }
 		}
 		System.out.println("");
@@ -131,10 +131,10 @@ public class Triominos {
     /**
      * place sur un plateau p la solution a un ensemble de triominos
      * en commencant par le triomino de la pointe en haut du plateau
-     * @param Jeu jeu tirage de triomino aleatoirement par la classe Jeu
-     * @param Plateaup plateau vide a completer
+     * @param Jeu             jeu tirage de triomino aleatoirement par la classe Jeu
+     * @param Plateau p       plateau vide a completer
      * @param PositionPlateau pos  premiere case du plateau case (0,0)
-     * @return boolean true si tous les triominos ont pu etre places sinon false
+     * @return boolean        true si tous les triominos ont pu etre places sinon false
      */
     public static boolean resoudre(Jeu jeu, Plateau p, PositionPlateau pos){
 	//initialisation des marqueurs
