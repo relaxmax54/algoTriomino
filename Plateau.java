@@ -104,7 +104,7 @@ public class Plateau{
      */
     public boolean dernierePosition(PositionPlateau p) {
 	//l'attribut type=8 de PositionPlateau détermine la dernière position du plateau
-	if(p.getType()==8)
+	if(p.getIndex()>8)
 	    return true;
 	else
 	    return false;
@@ -150,7 +150,6 @@ public class Plateau{
 		i--;//on recule jusqu'à retrouver la même rangée au dessus
 		System.out.print(i);
 	    }
-	    this.affiche();
 	    test=test&&(t.getBase()==pos[i].getTriomino().getBase());
 	    //on considere qu'il y aura toujours un triomino deja place...
 	System.out.println(" "+test);
@@ -175,15 +174,14 @@ public class Plateau{
 
     }
     public void affiche(){
-	//for(int i=0;i<largeur*largeur;i++){
-	int i=0;
+	for(int i=0;i<largeur*largeur-1;i++){
 	System.out.print(pos[i].getTriomino().getBase());
 	System.out.print(pos[i].getTriomino().getGauche());
 	System.out.print(pos[i].getTriomino().getDroite()+"/");
-	//}
+	}
     }
     public void MajCoordonnées(){
-	for(int i=0;i<largeur*largeur;i++){
+	for(int i=0;i<largeur*largeur-1;i++){
 	    pos[i].getTriomino().r=pos[i].getRangee();
 	    pos[i].getTriomino().c=pos[i].getColonne();
 	}

@@ -65,11 +65,13 @@ public class Triominos {
 	//
 	tests();
 	//PositionPlateau pos= new PositionPlateau(0,0,4,0);
-	resoudre(jeu,p,p.pos[0]);
-	System.out.println("Résultat :" );
-	p.MajCoordonnées();
-	p.affiche();
-	affiche_plateau_mini(p);
+	if(resoudre(jeu,p,p.pos[0])){
+	    System.out.println("Résultat :" );
+	    //p.MajCoordonnées();
+	    p.affiche();
+	    affiche_plateau_mini(p);
+	}else
+	    System.out.println("Pas de résultat trouvé !");
     }
     /**
      * conversion d'un entier positif (<62) en caractere [0-9A-Za-z]
@@ -164,6 +166,7 @@ public class Triominos {
 	    trouve = true;
 	}else{
 	    PositionPlateau next_pos = p.nextPosition(pos);
+	    System.out.println("pos: "+next_pos.getIndex());
 	    int i = 0;
 	    //on s'assure que l'on ne dépasse pas le nombre de colonnes(largeur)
 	    while ((i<(largeur*largeur))&&(!trouve)) {
