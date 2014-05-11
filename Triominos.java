@@ -30,23 +30,27 @@ public class Triominos {
 		}
 	}
 	Plateau p=new Plateau(size);
-	jeu.affiche();	
+	jeu.affiche();
 	/*  placer les triominos sur le plateau.
 	 *    on ne résout pas le problème ici
 	 */
-	for(int i=0;i<size*size;i++)
-	    p.set(jeu.get(i),i);
-	//
-	for(int i=0;i<size*size;i++){
-	    System.out.print(p.pos[i].getTriomino().b);
-	    System.out.print(p.pos[i].getTriomino().d);
-	    System.out.print(p.pos[i].getTriomino().g+"/");
+	int i=0;
+	for(int r=0;r<size;r++){
+	    for(int c=0;c<r*2+1;c++){
+		p.set(jeu.get(i),i,r,c);
+		i++;
+	    }
 	}
+	//
 	affiche_plateau_mini(p);
+	//on efface tous les triominos
+	/*for(int i=0;i<size*size;i++)
+	  p.set(null,i);*/
 	tests();
 	PositionPlateau pos= new PositionPlateau(0,0,4,0);
 	resoudre(jeu,p,pos);
 	System.out.println("Résultat :" );
+	//p.affiche();
 	affiche_plateau_mini(p);
     }
     /**
@@ -95,9 +99,9 @@ public class Triominos {
 		    System.out.print("   ");
 		if (l%2>0)
 		    System.out.print(" ");
-		for (int j=0 ; j <= 2*i ; j++ ){
+		for(int j=0 ; j <= 2*i ; j++ ){
 		    Triomino t=p.get(i,j);
-		    switch (l) {
+		    switch (l){
 		    case 0:
 			/* top line */
 			if (j%2>0)//j pair
@@ -108,9 +112,9 @@ public class Triominos {
 		    case 1:
 			/* middle line */
 			if (j%2>0)//j pair
-			    System.out.print(charorstar(t,t.g)+" "+charorstar(t,t.d));
-			else
 			    System.out.print(charorstar(t,t.d)+" "+charorstar(t,t.g));
+			else
+			    System.out.print(charorstar(t,t.g)+" "+charorstar(t,t.d));
 			break;
 		    case 2:
 			/* bottom line */
@@ -122,12 +126,6 @@ public class Triominos {
 		}
 		System.out.println("");
 	    }
-	}
-    
-	for(int i=0;i<9;i++){
-	    System.out.print(p.pos[i].getTriomino().b);
-	    System.out.print(p.pos[i].getTriomino().d);
-	    System.out.print(p.pos[i].getTriomino().g+"/");
 	}
     }
     /**
@@ -159,7 +157,7 @@ public class Triominos {
 		    //2 retournements maximum
 		    while ((j<2)&&(!trouve)){
 			//si les contraintes sont vérifiées
-			System.out.println("index : "+pos.getIndex());
+			//System.out.println("index : "+pos.getIndex());
 			if (p.contraintes(t,pos)){
 			    //on place un triomino
 			    p.placer(t,pos);
@@ -169,7 +167,7 @@ public class Triominos {
 				trouve = true;
 			    else{
 				p.enlever(pos);
-				System.out.println("on enlève");
+				//System.out.println("on enlève");
 			    }
 			}
 			//si le triomino n'a pas satisfait aux contraintes
@@ -177,7 +175,7 @@ public class Triominos {
 			if (!trouve){
 			    j++;
 			    t = t.rotation();
-			    System.out.println("on retourne "+j);
+			    //System.out.println("on retourne "+j);
 			}
 		    }
 		    //si test non satisfait après 2 retournements...

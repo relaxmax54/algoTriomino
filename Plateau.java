@@ -44,7 +44,6 @@ public class Plateau{
 			pos[i].setType(12);
 		}
 		System.out.println("index:"+i+" c: "+(c+milieu)+" r: "+r+" "+pos[i].getType());
-		System.out.println("index:"+i+" c: "+pos[i].getColonne()+" r: "+r+" "+pos[i].getType());
 		i++;
 	    }
 	    milieu--;
@@ -62,7 +61,8 @@ public class Plateau{
      * @param index de la position du triomino
      * @param t triomino a placer
      */
-    public void set(Triomino t,int index){
+    public void set(Triomino t,int index,int r,int c){
+	t.setPlace(r,c);
 	pos[index].setTriomino(t);
     }
     /**
@@ -74,9 +74,12 @@ public class Plateau{
     public Triomino get(int r,int c){
 	int rep=0;
 	for(int i=0;i<largeur*largeur;i++){
-	    if(pos[i].getRangee()==r && pos[i].getColonne()==c)
+	    if(pos[i].getTriomino().r==r && pos[i].getTriomino().c==c)
 		rep=i;
+	    //System.out.println("i:"+i);
 	}
+	//	System.out.println("rep:"+rep);
+
 	return pos[rep].getTriomino();
     }
     /**
@@ -140,10 +143,9 @@ public class Plateau{
 	}
 	//test en bas = test du bit 3
 	if((p.getType()&4)==4){
-	    System.out.println("testbit4");
 	    int i=p.getIndex()+1;
 	    while(p.getColonne()!=pos[i].getColonne()){
-		System.out.print(p.getColonne()+":"+pos[i].getColonne()+"/");
+		//		System.out.print(p.getColonne()+":"+pos[i].getColonne()+"/");
 		i++;//on avance jusqu'à retrouver la même rangée en dessous
 	    }
 	    if(pos[i].getTriomino()==null)//test si un triomino en dessous
@@ -153,6 +155,10 @@ public class Plateau{
 	}
 	//on retourne la valeur de test, true si tests satisfaits
 	return test;
+    }
+    public void affiche(){
+	for(int i=0;i<9;i++)
+	    System.out.println(pos[i].getIndex());//Triomino().getBase());
     }
 }
 
