@@ -22,9 +22,9 @@ public class Plateau{
 	    for(int c=0;c<r*2+1;c++){
 		//cas généraux
 		if(c%2==0)                 //colonne paires
-		    pos[i]=new PositionPlateau(c+milieu,r,13,i);
+		    pos[i]=new PositionPlateau(r,c+milieu,13,i);
 		else                       //colonnes impaires
-		    pos[i]=new PositionPlateau(c+milieu,r,11,i);
+		    pos[i]=new PositionPlateau(r,c+milieu,11,i);
 		//cas particuliers
 		if(r==0)          //première rangée
 		    pos[i].setType(4);
@@ -78,15 +78,15 @@ public class Plateau{
 		rep=i;
 	    //System.out.println("i:"+i);
 	}
-	//	System.out.println("rep:"+rep);
+	//	System.out.print(" "+rep);
 
 	return pos[rep].getTriomino();
     }
     /**
      * methode pour placer un Triomino sur le plateau
      */
-    public void placer(Triomino t, PositionPlateau p){
-	p.setTriomino(t);
+    public void placer(Triomino t, PositionPlateau pos){
+	pos.setTriomino(t);
     }
     /**
      * methode enlever
@@ -120,45 +120,77 @@ public class Plateau{
      * methode pour verifier le respect des contraintes
      */
     public boolean contraintes(Triomino t, PositionPlateau p){
-	boolean test=false;
+	boolean test=true;
 	//rappel : la PositionPlateau p ne contient aucun Triomino / triomino=null
 	//test à gauche = test du bit 4
-	if((p.getType()&8)==8)
+	
+	if((p.getType()&8)==8){
+	    System.out.println("on teste à gauche");
 	    if(pos[p.getIndex()-1].getTriomino()==null)
 		test=true;
 	    else
 		test=(t.getGauche()==pos[p.getIndex()-1].getTriomino().getDroite());//on compare la valeur de gauche avec celle de la droite du voisin
+	System.out.println(" "+test);
+	}
 	//test à droite = test du bit 1
-	if((p.getType()&1)==1)
+	if((p.getType()&1)==1){
+	    System.out.print("on teste à droite");
 	    if(pos[p.getIndex()+1].getTriomino()==null)//test si un triomino est à côté
-		test=true;
+		test=test&&true;
 	    else
-		test=(t.getDroite()==pos[p.getIndex()+1].getTriomino().getGauche());
+		test=test&&(t.getDroite()==pos[p.getIndex()+1].getTriomino().getGauche());
+	System.out.println(" "+test);
+	}
 	//test en haut = test du bit 2
+	
 	if((p.getType()&2)==2){
+	    System.out.print("on teste en haut");
 	    int i=p.getIndex()-1;
-	    while(p.getColonne()!=pos[i].getColonne())
+	    while(p.getColonne()!=pos[i].getColonne()){
 		i--;//on recule jusqu'à retrouver la même rangée au dessus
-	test=(t.getBase()==pos[i].getTriomino().getBase());
+		System.out.print(i);
+	    }
+	    this.affiche();
+	    test=test&&(t.getBase()==pos[i].getTriomino().getBase());
+	    //on considere qu'il y aura toujours un triomino deja place...
+	System.out.println(" "+test);
 	}
 	//test en bas = test du bit 3
 	if((p.getType()&4)==4){
+	    System.out.print("on teste en bas");
 	    int i=p.getIndex()+1;
 	    while(p.getColonne()!=pos[i].getColonne()){
 		//		System.out.print(p.getColonne()+":"+pos[i].getColonne()+"/");
 		i++;//on avance jusqu'à retrouver la même rangée en dessous
 	    }
 	    if(pos[i].getTriomino()==null)//test si un triomino en dessous
-		test=true;
+		test=test&&true;
 	    else
-		test=(t.getBase()==pos[i].getTriomino().getBase());
+		test=test&&(t.getBase()==pos[i].getTriomino().getBase());
+   
 	}
 	//on retourne la valeur de test, true si tests satisfaits
+	System.out.println(" "+test);
 	return test;
+
     }
     public void affiche(){
-	for(int i=0;i<9;i++)
-	    System.out.println(pos[i].getIndex());//Triomino().getBase());
+	//for(int i=0;i<largeur*largeur;i++){
+	int i=0;
+	System.out.print(pos[i].getTriomino().getBase());
+	System.out.print(pos[i].getTriomino().getGauche());
+	System.out.print(pos[i].getTriomino().getDroite()+"/");
+	//}
+    }
+    public void MajCoordonnées(){
+	for(int i=0;i<largeur*largeur;i++){
+	    pos[i].getTriomino().r=pos[i].getRangee();
+	    pos[i].getTriomino().c=pos[i].getColonne();
+	}
+    }
+    public void vider(){
+	for(int i=0;i<largeur*largeur;i++)
+	    pos[i].setTriomino(null);
     }
 }
 

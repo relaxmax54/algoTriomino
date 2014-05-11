@@ -35,22 +35,40 @@ public class Triominos {
 	 *    on ne résout pas le problème ici
 	 */
 	int i=0;
+	Triomino tr;
 	for(int r=0;r<size;r++){
 	    for(int c=0;c<r*2+1;c++){
 		p.set(jeu.get(i),i,r,c);
+		/*tr=jeu.get(i);
+		System.out.print(tr.b);
+		System.out.print(tr.g);
+		System.out.print(tr.d+"/");*/
 		i++;
 	    }
 	}
-	//
-	affiche_plateau_mini(p);
-	//on efface tous les triominos
-	/*for(int i=0;i<size*size;i++)
-	  p.set(null,i);*/
-	tests();
-	PositionPlateau pos= new PositionPlateau(0,0,4,0);
-	resoudre(jeu,p,pos);
-	System.out.println("Résultat :" );
+	/*System.out.println(" ");
+	for(int r=0;r<size;r++){
+	    for(int c=0;c<r*2+1;c++){
+		tr=p.get(r,c);
+		System.out.print(tr.getBase());
+		System.out.print(tr.getGauche());
+		System.out.print(tr.getDroite()+"/");
+	    }
+	}
+	//p.MajCoordonnées();
+	System.out.println(" ");
+	*/
 	//p.affiche();
+	affiche_plateau_mini(p);
+	//on retire tous les triominos du plateau pour résoudre le problème
+	p.vider();
+	//
+	tests();
+	//PositionPlateau pos= new PositionPlateau(0,0,4,0);
+	resoudre(jeu,p,p.pos[0]);
+	System.out.println("Résultat :" );
+	p.MajCoordonnées();
+	p.affiche();
 	affiche_plateau_mini(p);
     }
     /**
@@ -149,25 +167,32 @@ public class Triominos {
 	    int i = 0;
 	    //on s'assure que l'on ne dépasse pas le nombre de colonnes(largeur)
 	    while ((i<(largeur*largeur))&&(!trouve)) {
-		//on s'assure que le triomino n'est pas déjà posé sur le plateau
+		//triomino déjà posé sur le plateau ?
 		if (!jeu.utilise(i)){
-		    //on retire le triomino de ceux disponibles
+		    //on retire un triomino de ceux disponibles
 		    Triomino t = jeu.enlever(i);
 		    int j = 0;//nombre de fois  que le triomino sera retourné
 		    //2 retournements maximum
 		    while ((j<2)&&(!trouve)){
 			//si les contraintes sont vérifiées
-			//System.out.println("index : "+pos.getIndex());
+			System.out.println("index : "+pos.getIndex()+" i: "+i);
+			
+			System.out.print(t.getBase());
+			System.out.print(t.getGauche());
+			System.out.print(t.getDroite()+"/");
 			if (p.contraintes(t,pos)){
-			    //on place un triomino
+			    //on place le triomino à la position en cours
 			    p.placer(t,pos);
+			    System.out.println("placer");
+		
 			    //si le triomino ne répond pas aux contraintes
 			    //on enlève le triomino
-			    if (resoudre(jeu,p,next_pos))
+			    if (resoudre(jeu,p,next_pos)){
 				trouve = true;
-			    else{
+				System.out.println("TROUVE"+i);
+			    }else{
 				p.enlever(pos);
-				//System.out.println("on enlève");
+				System.out.println("on enlève");
 			    }
 			}
 			//si le triomino n'a pas satisfait aux contraintes
@@ -175,7 +200,7 @@ public class Triominos {
 			if (!trouve){
 			    j++;
 			    t = t.rotation();
-			    //System.out.println("on retourne "+j);
+			    System.out.println("on retourne "+j);
 			}
 		    }
 		    //si test non satisfait après 2 retournements...

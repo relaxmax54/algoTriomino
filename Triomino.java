@@ -23,7 +23,7 @@ public class Triomino{
      * getter de l'attribut b
      */
     public int getGauche(){
-	return this.b;
+	return this.g;
     }
     /**
      * constructeur general

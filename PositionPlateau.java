@@ -32,7 +32,7 @@ public class PositionPlateau {
      * @param int i index de la position sur un plateau
      * @param char t type de position 
      */
-    public PositionPlateau(int c, int r, int t, int i) {
+    public PositionPlateau(int r, int c, int t, int i) {
 	this.triomino=null;//au départ aucun triomino n'est attribué;
 	this.colonne=c;
 	this.rangee=r;
