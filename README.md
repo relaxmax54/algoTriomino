@@ -1,20 +1,8 @@
 algoTriomino
 ============
 
-Projet de programmation récursive sur un modèles de triominos
+NB : l'affichage "graphique" de la réponse n'est pas correcte, nous n'avons pas réussit à le régler.
 
-Maxime :
-* contraintes
-* enlever
-* placer
-
-
-Rémi :
-* résoudre
-* next
-* rotation
-* ajouter
-
-profroegel@gmail.com
-<-- date de dépôt : 12 mai 2014 au matin -->
+NB : Les groupes de chiffres affichés au dessus du "graphe" correspondent à la solution si on lit les valeurs comme celles de triominos disposés sur un plateau à partir de la pointe du haut, puis en "descendant" ligne par ligne jusqu'à la dernière. 
+C'est de cette manière que nous avons pu vérifier que notre algorithme fonctionne.
 

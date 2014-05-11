@@ -1,4 +1,4 @@
-/*import java.util.Random;*/
+import java.util.Random;
 import java.io.*;
 
 /**
@@ -11,12 +11,10 @@ import java.io.*;
 public class Triominos {
     public static void main(String[] args) throws IOException {
 	System.out.println("Jeu des triominos");
-	/*	        Random generator = new Random();*/
+	Random generator = new Random();
 	int base,size;
-	base = 3;
-	size = 3;
-	/*	        base =  2 + Math.abs(generator.nextInt()%15);
-			size =  1 + Math.abs(generator.nextInt()%6);*/
+	base =  2 + Math.abs(generator.nextInt()%15);
+	size =  1 + Math.abs(generator.nextInt()%6);
 	Jeu jeu=new Jeu(size,base);
 	PrintWriter pw = null;
 	try {
@@ -45,13 +43,16 @@ public class Triominos {
 	affiche_plateau_mini(p);
 	//on retire tous les triominos du plateau pour résoudre le problème
 	p.vider();
-	//PositionPlateau pos= new PositionPlateau(0,0,4,0);
-	if(resoudre(jeu,p,p.pos[0])){
-	    System.out.print("Résultat :  " );
-	    p.affiche();
-	    affiche_plateau_mini(p);
-	}else
-	    System.out.println("Pas de résultat trouvé !");
+	//
+	if(size>1){
+	    if(resoudre(jeu,p,p.pos[0])){
+		System.out.print("Résultat :  " );
+		affiche_plateau_mini(p);
+	    }else
+		System.out.println("Pas de résultat trouvé !");
+	}else{
+	    System.out.println("Résultat : La solution est identique à la question " );
+	}
     }
     /**
      * conversion d'un entier positif (<62) en caractere [0-9A-Za-z]
