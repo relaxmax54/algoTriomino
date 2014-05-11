@@ -39,31 +39,12 @@ public class Triominos {
 	for(int r=0;r<size;r++){
 	    for(int c=0;c<r*2+1;c++){
 		p.set(jeu.get(i),i,r,c);
-		/*tr=jeu.get(i);
-		System.out.print(tr.b);
-		System.out.print(tr.g);
-		System.out.print(tr.d+"/");*/
 		i++;
 	    }
 	}
-	/*System.out.println(" ");
-	for(int r=0;r<size;r++){
-	    for(int c=0;c<r*2+1;c++){
-		tr=p.get(r,c);
-		System.out.print(tr.getBase());
-		System.out.print(tr.getGauche());
-		System.out.print(tr.getDroite()+"/");
-	    }
-	}
-	//p.MajCoordonnées();
-	System.out.println(" ");
-	*/
-	//p.affiche();
 	affiche_plateau_mini(p);
 	//on retire tous les triominos du plateau pour résoudre le problème
 	p.vider();
-	//
-	tests();
 	//PositionPlateau pos= new PositionPlateau(0,0,4,0);
 	if(resoudre(jeu,p,p.pos[0])){
 	    System.out.println("Résultat :" );
@@ -162,7 +143,6 @@ public class Triominos {
 	boolean trouve = false;
 	//cas de sortie
 	if(p.dernierePosition(pos)){
-	    System.out.println("sortie");
 	    trouve = true;
 	}else{
 	    int i = 0;
@@ -176,24 +156,15 @@ public class Triominos {
 		    //2 retournements maximum
 		    while ((j<2)&&(!trouve)){
 			//si les contraintes sont vérifiées
-			System.out.println("index : "+pos.getIndex()+" i: "+i);
-			
-			System.out.print(t.getBase());
-			System.out.print(t.getGauche());
-			System.out.print(t.getDroite()+"/");
 			if (p.contraintes(t,pos)){
 			    //on place le triomino à la position en cours
 			    p.placer(t,pos);
-			    System.out.println("placer");
-		
 			    //si le triomino ne répond pas aux contraintes
 			    //on enlève le triomino
 			    if (resoudre(jeu,p,p.nextPosition(pos))){
 				trouve = true;
-				System.out.println("TROUVE"+i);
 			    }else{
 				p.enlever(pos);
-				System.out.println("on enlève");
 			    }
 			}
 			//si le triomino n'a pas satisfait aux contraintes
@@ -201,7 +172,6 @@ public class Triominos {
 			if (!trouve){
 			    j++;
 			    t = t.rotation();
-			    System.out.println("on retourne "+j);
 			}
 		    }
 		    //si test non satisfait après 2 retournements...
@@ -217,8 +187,5 @@ public class Triominos {
 	    }
 	}
 	return trouve;//sortie de la récursivité
-    }
-    public static void tests(){
-	System.out.println("tests en cours !");
     }
 }

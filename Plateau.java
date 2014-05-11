@@ -43,7 +43,6 @@ public class Plateau{
 		    if(c==r*2)
 			pos[i].setType(12);
 		}
-		System.out.println("index:"+i+" c: "+(c+milieu)+" r: "+r+" "+pos[i].getType());
 		i++;
 	    }
 	    milieu--;
@@ -76,10 +75,7 @@ public class Plateau{
 	for(int i=0;i<largeur*largeur;i++){
 	    if(pos[i].getTriomino().r==r && pos[i].getTriomino().c==c)
 		rep=i;
-	    //System.out.println("i:"+i);
 	}
-	//	System.out.print(" "+rep);
-
 	return pos[rep].getTriomino();
     }
     /**
@@ -128,38 +124,29 @@ public class Plateau{
 	//test à gauche = test du bit 4
 	
 	if((p.getType()&8)==8){
-	    System.out.println("on teste à gauche");
 	    if(pos[p.getIndex()-1].getTriomino()==null)
 		test=true;
 	    else
 		test=(t.getGauche()==pos[p.getIndex()-1].getTriomino().getDroite());//on compare la valeur de gauche avec celle de la droite du voisin
-	System.out.println(" "+test);
 	}
 	//test à droite = test du bit 1
 	if((p.getType()&1)==1){
-	    System.out.print("on teste à droite");
 	    if(pos[p.getIndex()+1].getTriomino()==null)//test si un triomino est à côté
 		test=test&&true;
 	    else
 		test=test&&(t.getDroite()==pos[p.getIndex()+1].getTriomino().getGauche());
-	System.out.println(" "+test);
 	}
 	//test en haut = test du bit 2
-	
 	if((p.getType()&2)==2){
-	    System.out.print("on teste en haut");
 	    int i=p.getIndex()-1;
 	    while(p.getColonne()!=pos[i].getColonne()){
 		i--;//on recule jusqu'à retrouver la même rangée au dessus
-		System.out.print(i);
 	    }
 	    test=test&&(t.getBase()==pos[i].getTriomino().getBase());
 	    //on considere qu'il y aura toujours un triomino deja place...
-	System.out.println(" "+test);
 	}
 	//test en bas = test du bit 3
 	if((p.getType()&4)==4){
-	    System.out.print("on teste en bas");
 	    int i=p.getIndex()+1;
 	    while(p.getColonne()!=pos[i].getColonne()){
 		//		System.out.print(p.getColonne()+":"+pos[i].getColonne()+"/");
@@ -169,10 +156,8 @@ public class Plateau{
 		test=test&&true;
 	    else
 		test=test&&(t.getBase()==pos[i].getTriomino().getBase());
-   
-	}
+   	}
 	//on retourne la valeur de test, true si tests satisfaits
-	System.out.println(" "+test);
 	return test;
 
     }
