@@ -13,7 +13,7 @@ public class Triominos {
 	System.out.println("Jeu des triominos");
 	/*	        Random generator = new Random();*/
 	int base,size;
-	base = 2;
+	base = 3;
 	size = 3;
 	/*	        base =  2 + Math.abs(generator.nextInt()%15);
 			size =  1 + Math.abs(generator.nextInt()%6);*/
@@ -67,7 +67,7 @@ public class Triominos {
 	//PositionPlateau pos= new PositionPlateau(0,0,4,0);
 	if(resoudre(jeu,p,p.pos[0])){
 	    System.out.println("Résultat :" );
-	    //p.MajCoordonnées();
+	    p.MajCoordonnées();
 	    p.affiche();
 	    affiche_plateau_mini(p);
 	}else
@@ -162,11 +162,9 @@ public class Triominos {
 	boolean trouve = false;
 	//cas de sortie
 	if(p.dernierePosition(pos)){
-	    System.out.println("sortie : "+pos.getIndex());
+	    System.out.println("sortie");
 	    trouve = true;
 	}else{
-	    PositionPlateau next_pos = p.nextPosition(pos);
-	    System.out.println("pos: "+next_pos.getIndex());
 	    int i = 0;
 	    //on s'assure que l'on ne dépasse pas le nombre de colonnes(largeur)
 	    while ((i<(largeur*largeur))&&(!trouve)) {
@@ -190,7 +188,7 @@ public class Triominos {
 		
 			    //si le triomino ne répond pas aux contraintes
 			    //on enlève le triomino
-			    if (resoudre(jeu,p,next_pos)){
+			    if (resoudre(jeu,p,p.nextPosition(pos))){
 				trouve = true;
 				System.out.println("TROUVE"+i);
 			    }else{

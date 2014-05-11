@@ -104,7 +104,7 @@ public class Plateau{
      */
     public boolean dernierePosition(PositionPlateau p) {
 	//l'attribut type=8 de PositionPlateau détermine la dernière position du plateau
-	if(p.getIndex()>8)
+	if(p==null)
 	    return true;
 	else
 	    return false;
@@ -114,7 +114,10 @@ public class Plateau{
      * @return p positionPlateau suivante
      */
     public PositionPlateau nextPosition(PositionPlateau p){
-	return pos[p.getIndex()+1];
+	if(p.getIndex()+1<largeur*largeur)
+	    return pos[p.getIndex()+1];
+	else
+	    return null;
     }
     /**
      * methode pour verifier le respect des contraintes
@@ -174,14 +177,14 @@ public class Plateau{
 
     }
     public void affiche(){
-	for(int i=0;i<largeur*largeur-1;i++){
+	for(int i=0;i<largeur*largeur;i++){
 	System.out.print(pos[i].getTriomino().getBase());
 	System.out.print(pos[i].getTriomino().getGauche());
 	System.out.print(pos[i].getTriomino().getDroite()+"/");
 	}
     }
     public void MajCoordonnées(){
-	for(int i=0;i<largeur*largeur-1;i++){
+	for(int i=0;i<largeur*largeur;i++){
 	    pos[i].getTriomino().r=pos[i].getRangee();
 	    pos[i].getTriomino().c=pos[i].getColonne();
 	}
