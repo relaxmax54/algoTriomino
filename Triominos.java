@@ -47,8 +47,7 @@ public class Triominos {
 	p.vider();
 	//PositionPlateau pos= new PositionPlateau(0,0,4,0);
 	if(resoudre(jeu,p,p.pos[0])){
-	    System.out.println("Résultat :" );
-	    p.MajCoordonnées();
+	    System.out.print("Résultat :  " );
 	    p.affiche();
 	    affiche_plateau_mini(p);
 	}else
@@ -77,11 +76,11 @@ public class Triominos {
      * affiche une asterisque si le premier parametre est nul
      * typiquement si le premier parametre fait partie d une ColonneTriomino
      * et que null a ete affecte a cet element de la colonne
-     * @param t
+     * @param Triomino t
      * 			Triomino a ecrire
-     * @param c
+     * @param int c
      * 			face a ecrire
-     * @return
+     * @return char
      * 			valeur monocaractere de la face a ecrire
      */
     public static char charorstar(Triomino t,int c) {
@@ -132,10 +131,10 @@ public class Triominos {
     /**
      * place sur un plateau p la solution a un ensemble de triominos
      * en commencant par le triomino de la pointe en haut du plateau
-     * @param jeu  tirage de triomino aleatoirement par la classe Jeu
-     * @param p    plateau vide a completer
-     * @param pos  premiere case du plateau case (0,0)
-     * @return     true si tous les triominos ont pu etre places sinon false
+     * @param Jeu jeu tirage de triomino aleatoirement par la classe Jeu
+     * @param Plateaup plateau vide a completer
+     * @param PositionPlateau pos  premiere case du plateau case (0,0)
+     * @return boolean true si tous les triominos ont pu etre places sinon false
      */
     public static boolean resoudre(Jeu jeu, Plateau p, PositionPlateau pos){
 	//initialisation des marqueurs
@@ -150,7 +149,7 @@ public class Triominos {
 	    while ((i<(largeur*largeur))&&(!trouve)) {
 		//triomino déjà posé sur le plateau ?
 		if (!jeu.utilise(i)){
-		    //on retire un triomino de ceux disponibles
+		    //on retire un triomino de ceux disponibles dans le jeu
 		    Triomino t = jeu.enlever(i);
 		    int j = 0;//nombre de fois  que le triomino sera retourné
 		    //2 retournements maximum
@@ -171,7 +170,7 @@ public class Triominos {
 			//on le tourne 2 fois maximum (j<3)
 			if (!trouve){
 			    j++;
-			    t = t.rotation();
+			    t.rotation();
 			}
 		    }
 		    //si test non satisfait après 2 retournements...

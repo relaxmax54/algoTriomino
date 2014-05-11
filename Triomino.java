@@ -14,13 +14,13 @@ public class Triomino{
 	return this.b;
     }
     /**
-     * getter de l'attribut b
+     * getter de l'attribut d
      */
     public int getDroite(){
 	return this.d;
     }
     /**
-     * getter de l'attribut b
+     * getter de l'attribut g
      */
     public int getGauche(){
 	return this.g;
@@ -41,14 +41,12 @@ public class Triomino{
      * dans le sens des aiguilles d'une montre
      * @return nouveau triomino
      */
-    public Triomino rotation() {
+    public void rotation() {
 	int tmp;
 	tmp = b;
 	b = d;
 	d = g;
 	g = tmp;
-	Triomino t = new Triomino(b,g,d);
-	return t;
     }
     public void setPlace(int r, int c){
 	this.r=r;

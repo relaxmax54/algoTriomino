@@ -57,8 +57,10 @@ public class Plateau{
     }
     /**
      * methode de placement d un triomino
-     * @param index de la position du triomino
-     * @param t triomino a placer
+     * @param int index de la position du triomino
+     * @param Triomino t triomino a placer
+     * @param int r rang dans lequel placer le triomino
+     * @param int c colonne dans laquelle placer le triomino
      */
     public void set(Triomino t,int index,int r,int c){
 	t.setPlace(r,c);
@@ -88,7 +90,7 @@ public class Plateau{
      * methode enlever
      * enleve un triomino du plateau
      * typiquement s il y a un probleme de placement
-     * @param p position du triomino a enlever
+     * @param PositionPlateau p position du triomino a enlever
      */
     public void enlever(PositionPlateau p) {
 	p.setTriomino(null);
@@ -96,10 +98,10 @@ public class Plateau{
     /**
      * dernierePosition verifie si la position
      * est la derniere du plateau
+     * @param  PositionPlateau p position d'origine
      * @return true si la position est la derniere, false autrement
      */
     public boolean dernierePosition(PositionPlateau p) {
-	//l'attribut type=8 de PositionPlateau détermine la dernière position du plateau
 	if(p==null)
 	    return true;
 	else
@@ -107,7 +109,8 @@ public class Plateau{
     }
     /**
      * methode nextPosition retourne la position suivante sur le plateau
-     * @return p positionPlateau suivante
+     * @param  PositionPlateau p position d'origine
+     * @return PositionPlateau p positionPlateau suivante
      */
     public PositionPlateau nextPosition(PositionPlateau p){
 	if(p.getIndex()+1<largeur*largeur)
@@ -117,6 +120,8 @@ public class Plateau{
     }
     /**
      * methode pour verifier le respect des contraintes
+     *@param Triomino t triomino à tester
+     *@param PositionPlateau p position où est placé le triomino
      */
     public boolean contraintes(Triomino t, PositionPlateau p){
 	boolean test=true;
@@ -161,6 +166,9 @@ public class Plateau{
 	return test;
 
     }
+    /**
+     * affiche toute la liste des triominos posés sur le plateau
+     */
     public void affiche(){
 	for(int i=0;i<largeur*largeur;i++){
 	System.out.print(pos[i].getTriomino().getBase());
@@ -168,12 +176,9 @@ public class Plateau{
 	System.out.print(pos[i].getTriomino().getDroite()+"/");
 	}
     }
-    public void MajCoordonnées(){
-	for(int i=0;i<largeur*largeur;i++){
-	    pos[i].getTriomino().r=pos[i].getRangee();
-	    pos[i].getTriomino().c=pos[i].getColonne();
-	}
-    }
+    /**
+     * vide le plateau de tous ses triominos
+     */
     public void vider(){
 	for(int i=0;i<largeur*largeur;i++)
 	    pos[i].setTriomino(null);
